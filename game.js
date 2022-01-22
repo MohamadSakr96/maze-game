@@ -48,6 +48,7 @@ function winGame() {
         document.getElementById('status').innerHTML = "🎉 YOU WIN!! 🎉";
         game_state = false;
         game_score += 5;
+        disableEvent();
     }
 }
 
@@ -62,6 +63,7 @@ function looseGame() {
         document.getElementById('status').innerHTML = "🙁 YOU LOOSE!! 🙁";
         game_state = false;
         game_score -= 10;
+        disableEvent();
     }
     
 }
@@ -74,5 +76,15 @@ function resetGame() {
     document.getElementById('status').innerHTML = "";
     game_state = true;
     game_score = 0; // before reseting show final score ?
+}
+
+function disableEvent() {
+    let elements = document.getElementsByClassName('boundary');
+    for (let i=0; i<elements.length; i++) {
+        if (game_state == false) {
+            elements[i].removeEventListener("mouseover", looseGame);
+            document.getElementById('end').removeEventListener("mouseover", winGame);
+        }
+    }
 }
 
