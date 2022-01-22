@@ -17,7 +17,7 @@ function startGame() {
     }
 }
 
-
+// tracking if the mouse hit a boundary or reach the end
 function trackMouse() {
     let elements = document.getElementsByClassName('boundary');
 
@@ -27,7 +27,7 @@ function trackMouse() {
     document.getElementById('end').addEventListener("mouseover", winGame);
 }
 
-
+// if you reach the end!!
 function winGame() {      
     let elements = document.getElementsByClassName('boundary');
 
@@ -40,7 +40,7 @@ function winGame() {
     disableEvent();
 }
 
-
+// if you hit a boundary
 function looseGame() {
     let elements = document.getElementsByClassName('boundary');
     
@@ -53,6 +53,7 @@ function looseGame() {
     disableEvent();   
 }
 
+// only when you press "S" again
 function resetGame() {
     let elements = document.getElementsByClassName('boundary');
     for (let i=0; i<elements.length; i++) {
@@ -63,6 +64,7 @@ function resetGame() {
     game_score = 0; // before reseting show final score ?
 }
 
+// to stop event listeners from always running
 function disableEvent() {
     let elements = document.getElementsByClassName('boundary');
     for (let i=0; i<elements.length; i++) {
