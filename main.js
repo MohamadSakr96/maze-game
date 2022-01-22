@@ -68,10 +68,8 @@ function resetGame() {
 function disableEvent() {
     let elements = document.getElementsByClassName('boundary');
     for (let i=0; i<elements.length; i++) {
-        if (game_state == false) {
-            elements[i].removeEventListener("mouseover", looseGame);
-            document.getElementById('end').removeEventListener("mouseover", winGame);
-        }
+        elements[i].removeEventListener("mouseover", looseGame);
     }
+    document.getElementById('end').removeEventListener("mouseover", winGame);
 }
 
