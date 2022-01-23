@@ -1,4 +1,4 @@
-// make it into class later...
+// Game state variables
 var game_state = true;
 var game_score = 0;
 
@@ -6,12 +6,12 @@ var game_score = 0;
 // load the page and only start when to button S is pressed
 window.onload = () => {  
     let a = 1; 
-    document.getElementById('start').addEventListener("click", () => {startGame(a);});
+    document.getElementById('start').addEventListener("click", () => {startGame();});
 }
 
 // Where the game starts
-function startGame(b) {
-    console.log(b);
+function startGame() {
+
     if (game_state == true) {
         trackMouse();
     }else {
@@ -34,9 +34,8 @@ function trackMouse() {
 // if you go outside of the game
 function outGame() {
     if (game_state == true) {
-        alert("😁 Nice try! 😁");
-        disableEvent();
-        resetGame();
+        alert("😁 Try Again! 😁");
+        looseGame();
     }
 }
 
