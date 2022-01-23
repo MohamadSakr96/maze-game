@@ -3,13 +3,15 @@ var game_state = true;
 var game_score = 0;
 
 
-// load the page and only start when to buttong S is pressed
-window.onload = () => {   
-    document.getElementById('start').addEventListener("click", startGame);
+// load the page and only start when to button S is pressed
+window.onload = () => {  
+    let a = 1; 
+    document.getElementById('start').addEventListener("click", () => {startGame(a);});
 }
 
 // Where the game starts
-function startGame() {
+function startGame(b) {
+    console.log(b);
     if (game_state == true) {
         trackMouse();
     }else {
@@ -22,21 +24,33 @@ function trackMouse() {
     let elements = document.getElementsByClassName('boundary');
 
     for (let i=0; i<elements.length; i++) {
+        elements[i].style.backgroundColor = "black";
         elements[i].addEventListener("mouseover", looseGame);
     }
     document.getElementById('end').addEventListener("mouseover", winGame);
+    document.getElementById('game').addEventListener("mouseleave", outGame);
 }
+
+// if you go outside of the game
+function outGame() {
+    if (game_state == true) {
+        alert("😁 Nice try! 😁");
+        disableEvent();
+        resetGame();
+    }
+}
+
 
 // if you reach the end!!
 function winGame() {      
     let elements = document.getElementsByClassName('boundary');
 
     for (let i=0; i<elements.length; i++) {
-        elements[i].style.backgroundColor = "blue";
+        elements[i].style.backgroundColor = "green";
     }
     game_state = false;
     game_score += 5;
-    document.getElementById('status').innerHTML += `<br><br> 🎉 YOU WIN!! 🎉 <br> ${game_score}`;
+    document.getElementById('status').innerHTML += `<br><br> 🎉 YOU WIN!! 🎉 <br> ${game_score} points`;
     disableEvent();
 }
 
@@ -49,7 +63,7 @@ function looseGame() {
     }
     game_state = false;
     game_score -= 10;
-    document.getElementById('status').innerHTML += `<br><br> 🙁 YOU LOOSE!! 🙁 <br> ${game_score}`;
+    document.getElementById('status').innerHTML += `<br><br> 🙁 YOU LOOSE!! 🙁 <br> ${game_score} points`;
     disableEvent();   
 }
 
@@ -71,5 +85,6 @@ function disableEvent() {
         elements[i].removeEventListener("mouseover", looseGame);
     }
     document.getElementById('end').removeEventListener("mouseover", winGame);
+    document.getElementById('game').removeEventListener("mouseleave", outGame);
 }
 
